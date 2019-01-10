@@ -1,0 +1,69 @@
+#GraphQL schema
+
+enum ProductSortingField {
+  PRODUCTNAME
+  PRODUCTPRICE
+  PRODUCTINVENTORY
+  PRODUCTID
+}
+
+enum ProductSortingOrder {
+  ASCENDING
+  DESCENDING
+}
+
+type Product {
+  productId: Int!
+  productName: String!
+  productPrice: Float!
+  productInventory: Int! 
+}
+
+type ShoppingCart {
+  shoppingCartId: Int!
+  shoppingCartValue: Int!
+  shoppingCartItems: [OrderListing]!
+  shoppingCartKey: String!
+}
+
+type OrderListing {
+  orderListingId: Int!
+  product: Product!
+  productCount: Int!
+  shoppingCart: ShoppingCart!
+}
+
+type Query {
+  product(productId: Int!): Product
+  allProducts(
+      sortBy: ProductSortingField = PRODUCTPRICE,
+      sortOrder: ProductSortingOrder = ASCENDING,
+      inStockOnly: Boolean = false,
+      ): [Product]!
+
+  shoppingCart(): ShoppingCart!
+  shoppingCartIsEmpty(): Boolean!
+}
+
+type Mutation {
+  createProduct(productName: String!, productPrice: Float!, productInventory: Int!):
+    productId, productName, productPrice, productInventory, errors
+  updateProduct(
+        productId: Int!,
+        productInventory: Int = None,
+        productName: String = None, 
+        productPrice: Float = None): 
+    productId, productName, productPrice, productInventory, errors
+
+  deleteProduct(productId: Int!):
+    productId, productName, productPrice, productInventory, errors
+
+  addProductToCart(productId: Int!, productCount: Int = 1):
+      shoppingCart!, orderListing, errors
+  removeProductFromCart(productId: Int!, productCount: Int = 1):
+      shoppingCart!, errors
+  clearShoppingCart():
+      shoppingCart!
+  checkOutShoppingCart():
+      totalSpend!, shoppingCart!
+}

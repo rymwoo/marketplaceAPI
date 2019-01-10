@@ -1,0 +1,10 @@
+The task is to build the barebones of an online marketplace.
+
+
+Overview:
+
+
+
+Design decisions:
+
+Oftentimes, we need to look-up a record based on some key. If we provide multiple keys, they might conflict. At this point, the API can return one of two things: A union / join of the multiple sets, OR, throw an error. An error seems ungraceful, and having the API-caller constantly check for the number of items returned seems inelegant. After all, the point of an API is to simplify behind a layer of abstraction. I decided as a result to breakup the query functions such that one could only apply a single key at a time. If no match was found, we simply return Null.

@@ -1,0 +1,20 @@
+[{"model": "inventory.product", "fields": {
+  "productName": "Diary",
+  "productId": 1,
+  "productPrice": 12.50,
+  "productInventory": 8}},
+{"model": "inventory.product", "fields": {
+  "productName": "Pen",
+  "productId": 2,
+  "productPrice": 1.25,
+  "productInventory": 0}},
+{"model": "inventory.product", "fields": {
+  "productName": "Sheet of Paper",
+  "productId": 3,
+  "productPrice": 0.89,
+  "productInventory": 100}},
+{"model": "inventory.product", "fields": {
+  "productName": "Ruler",
+  "productId": 4,
+  "productPrice": 3.25,
+  "productInventory": 5}}]
